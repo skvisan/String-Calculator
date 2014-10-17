@@ -1,5 +1,5 @@
 package is.ru.stringcalculator;
-
+//hfirsta commit
 public class Calculator {
 
 	public static int add(String text){
