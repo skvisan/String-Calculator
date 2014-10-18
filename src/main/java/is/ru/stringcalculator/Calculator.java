@@ -2,34 +2,30 @@ package is.ru.stringcalculator;
 //hfirsta commit
 public class Calculator {
 
-	public static int add(String text){
-		if(text.equals("")){
-			return 0;
+		public static int add(String text){
+		if(text.equals("")){ return 0;}
+		else{
+		return splittastreng(text);
+		}}
+
+		private static int splittastreng(String text){
+		String[] strengur;
+		String gunni = text;
+		if(gunni.contains("//")){
+			String skipta = Character.toString(gunni.charAt(2));
+			gunni = gunni.replace(skipta, ",").trim();
+			gunni = gunni.replace("/", ",").trim();
+			gunni = gunni.replace(",", " ").trim();
+			gunni = gunni.replace(" ", ",").trim();
 		}
-		else if(text.contains(",") || text.contains("\n")){
-			return sum(splitNumbers(text));
+
+		gunni = gunni.replace("\n", ",");
+		strengur = gunni.split(",");
+	
+		int summa = 0;
+		for(int i = 0; i < strengur.length; i++){
+			summa += Integer.parseInt(strengur[i].trim());
 		}
-		else
-			return 1;
+		return summa;
 	}
-
-	private static int toInt(String number){
-		return Integer.parseInt(number);
-	}
-
-	private static String[] splitNumbers(String numbers){
-	   	 numbers = numbers.replace("\n",",");
-		 return numbers.split(",");
-	}
-      
-	 private static int sum(String[] numbers){
- 	    int total = 0;
-       		 for(String number : numbers){
-		    total += toInt(number);
-		}
-		return total;
-    	}
-
-
-
 }
